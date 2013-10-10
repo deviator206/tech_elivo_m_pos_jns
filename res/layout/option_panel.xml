@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/descent_Gray"
+    android:orientation="horizontal" >
+
+    <Button
+        android:id="@+id/logout_button"
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/logout_selector"
+        android:textColor="@color/Black"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/update_master_button"
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/update_selector"
+        android:textColor="@color/Black"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/settings_pref_button"
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/pref_selector"
+        android:textColor="@color/Black"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/switch_user_button"
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/switch_selector"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/float_pick_petty_button"
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/float_selector"
+        android:textColor="@color/Black"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/hold_txn_button"
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/held_selector"
+        android:textColor="@color/Black"
+        android:textSize="18sp" />
+
+    <!--
+        <Button android:layout_weight="1"
+            android:id="@+id/print_bill_button"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:text="@string/print_bill"
+            android:textColor="@color/Black" />
+
+        <Button android:layout_weight="1"
+            android:id="@+id/customer_details_button"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:text="@string/cust_details"
+            android:textColor="@color/Black" />
+    -->
+
+    <Button
+        android:id="@+id/zreport_button"
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/zed_selector"
+        android:textColor="@color/Black"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/calculator_button"
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/calculator_selector"
+        android:textColor="@color/Black"
+        android:textSize="18sp" />
+
+</LinearLayout> <!-- </HorizontalScrollView> -->

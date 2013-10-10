@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical" >
+
+    <Button
+        android:id="@+id/modifierBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/prdct_modifier"
+        android:textColor="@color/Black"
+        android:textSize="16sp" >
+    </Button>
+
+    <EditText
+        android:id="@+id/modifierQtyEt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/modifierBtn"
+        android:hint="@string/qty"
+        android:inputType="numberDecimal" >
+    </EditText>
+
+</RelativeLayout>

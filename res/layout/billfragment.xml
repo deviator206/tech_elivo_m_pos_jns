@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bill_panel_rectangle_shape" >
+
+    <ListView
+        android:id="@+id/billListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/top_hzt_line"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/bill_panel_rectangle_shape"
+        android:scrollbars="none"
+        android:visibility="visible" >
+    </ListView>
+
+    <View
+        android:id="@+id/top_hzt_line"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_above="@+id/bottomPanel"
+        android:layout_marginBottom="2dip"
+        android:layout_marginLeft="5dip"
+        android:layout_marginRight="5dip"
+        android:layout_marginTop="2dip"
+        android:background="@color/Black" />
+
+    <LinearLayout
+        android:id="@+id/bottomPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="10dip"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dip"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/voidItemBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/void_selector"
+                android:textColor="@color/Black"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/cancelsaleBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/newsale_selector"
+                android:textColor="@color/Black"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/paymentBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/payment_selector"
+                android:textColor="@color/Black"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/customerBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/customer_selector"
+                android:textColor="@color/Black"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dip"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:textSize="18sp" >
+
+            <Button
+                android:id="@+id/holdBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/hold_selector"
+                android:textColor="@color/Black"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/printBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/print_selector"
+                android:textColor="@color/Black"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/salespersonBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/sales_selector"
+                android:textColor="@color/Black"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

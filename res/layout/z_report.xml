@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/paymentLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/descent_Gray"
+    android:minHeight="1000dp"
+    android:minWidth="1000dp"
+    android:orientation="vertical"
+    android:padding="10dip" >
+
+    <RelativeLayout
+        android:id="@+id/titleLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@color/info_bar_blue"
+        android:padding="10dip" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/prepare_z_report"
+            android:textColor="@color/white"
+            android:textSize="26sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/titleLayout"
+        android:orientation="horizontal" >
+
+        <RelativeLayout
+            android:id="@+id/paymentTypeLayout"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_marginRight="10dip"
+            android:layout_weight="0.6"
+            android:background="@color/white" >
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/addBtn"
+                android:layout_centerVertical="true"
+                android:fillViewport="true" >
+
+                <LinearLayout
+                    android:id="@+id/middlelayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:padding="15dip"
+                    android:paddingTop="25dip" >
+
+                    <LinearLayout
+                        android:id="@+id/cashLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginTop="5dip"
+                        android:background="@drawable/bill_panel_rectangle_shape"
+                        android:padding="10dip" >
+
+                        <RadioButton
+                            android:id="@+id/cashSelection"
+                            android:layout_width="0dip"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/cash"
+                            android:textColor="@color/Black"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="0dip"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/select_currency"
+                                android:textColor="@color/Black" />
+
+                            <Spinner
+                                android:id="@+id/currency_spinner"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_marginTop="10dip" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dip"
+                                android:text="@string/enter_num_bills"
+                                android:textColor="@color/Black" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dip"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:orientation="vertical" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/select_denominations"
+                                android:textColor="@color/Black" />
+
+                            <Spinner
+                                android:id="@+id/denomination_spinner"
+                                android:layout_width="wrap_content"
+                                android:layout_height="50dp"
+                                android:layout_marginTop="10dip" />
+
+                            <EditText
+                                android:id="@+id/bill_num_ET"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="10dip"
+                                android:layout_marginTop="10dip"
+                                android:inputType="numberDecimal" />
+
+                            <requestFocus />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/cclayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dip"
+                        android:background="@drawable/bill_panel_rectangle_shape"
+                        android:orientation="horizontal"
+                        android:padding="10dip" >
+
+                        <RadioButton
+                            android:id="@+id/creditcardSelection"
+                            android:layout_width="0dip"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/credit_card"
+                            android:textColor="@color/Black"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="0dip"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/enter_amount"
+                            android:textColor="@color/Black" />
+
+                        <EditText
+                            android:id="@+id/ccAmountET"
+                            android:layout_width="0dip"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="10dip"
+                            android:layout_marginTop="10dip"
+                            android:layout_weight="1"
+                            android:inputType="numberDecimal" />
+
+                        <requestFocus />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/cqLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dip"
+                        android:background="@drawable/bill_panel_rectangle_shape"
+                        android:orientation="horizontal"
+                        android:padding="10dip" >
+
+                        <RadioButton
+                            android:id="@+id/chequeSelection"
+                            android:layout_width="0dip"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/cheque"
+                            android:textColor="@color/Black"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="0dip"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/enter_amount"
+                            android:textColor="@color/Black" />
+
+                        <EditText
+                            android:id="@+id/cqAmountET"
+                            android:layout_width="0dip"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="10dip"
+                            android:layout_marginTop="10dip"
+                            android:layout_weight="1"
+                            android:inputType="numberDecimal" />
+
+                        <requestFocus />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/voucherLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dip"
+                        android:background="@drawable/bill_panel_rectangle_shape"
+                        android:orientation="horizontal"
+                        android:padding="10dip" >
+
+                        <RadioButton
+                            android:id="@+id/voucherSelection"
+                            android:layout_width="0dip"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/voucher"
+                            android:textColor="@color/Black"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="0dip"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/enter_amount"
+                            android:textColor="@color/Black" />
+
+                        <EditText
+                            android:id="@+id/voAmountET"
+                            android:layout_width="0dip"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="10dip"
+                            android:layout_marginTop="10dip"
+                            android:layout_weight="1"
+                            android:inputType="numberDecimal" />
+
+                        <requestFocus />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/creditnoteLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dip"
+                        android:background="@drawable/bill_panel_rectangle_shape"
+                        android:orientation="horizontal"
+                        android:padding="10dip" >
+
+                        <RadioButton
+                            android:id="@+id/creditnoteSelection"
+                            android:layout_width="0dip"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/credit_note"
+                            android:textColor="@color/Black"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="0dip"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/enter_amount"
+                            android:textColor="@color/Black" />
+
+                        <EditText
+                            android:id="@+id/cnAmountET"
+                            android:layout_width="0dip"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="10dip"
+                            android:layout_marginTop="10dip"
+                            android:layout_weight="1"
+                            android:inputType="numberDecimal" />
+
+                        <requestFocus />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/dummy_id"
+                        android:layout_width="0px"
+                        android:layout_height="0px"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:orientation="vertical" />
+                </LinearLayout>
+            </ScrollView>
+
+            <Button
+                android:id="@+id/addBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="25dip"
+                android:layout_marginRight="15dip"
+                android:background="@drawable/add_selector" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="0.4" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/bottmoBTNLL"
+                android:orientation="vertical" >
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fillViewport="true" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:orientation="vertical" >
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/Gray"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:layout_width="0dip"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.6"
+                                android:padding="10dip"
+                                android:text="@string/description"
+                                android:textColor="@color/white"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="0dip"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="10dip"
+                                android:layout_weight="0.4"
+                                android:gravity="right"
+                                android:padding="10dip"
+                                android:text="@string/amount"
+                                android:textColor="@color/white"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/addPaymentDetailLL"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical" >
+                        </LinearLayout>
+                    </LinearLayout>
+                </ScrollView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/bottmoBTNLL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="25dip"
+                android:layout_marginTop="10dip"
+                android:orientation="vertical" >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dip"
+                    android:layout_marginTop="3dip"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal" >
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dip"
+                    android:layout_marginTop="5dip"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal" >
+
+                    <Button
+                        android:id="@+id/cancelBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dip"
+                        android:background="@drawable/cancel237x57_selector" />
+
+                    <Button
+                        android:id="@+id/view_printBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dip"
+                        android:layout_toRightOf="@+id/cancelBtn"
+                        android:background="@drawable/print237x57_selector" />
+                </RelativeLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

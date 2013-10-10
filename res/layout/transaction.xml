@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Light_Gray" >
+
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@color/Gray"
+        android:gravity="center_vertical"
+        android:padding="10dip"
+        android:text="@string/held_transactions_title"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/heldTxnLL"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/load_TxnLL"
+        android:layout_below="@+id/titleText"
+        android:layout_margin="10dip"
+        android:background="@drawable/bill_panel_rectangle_shape"
+        android:orientation="vertical"
+        android:padding="15dip" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <include
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dip"
+                layout="@layout/held_transaction_item" />
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/held_Txn_Table"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:cacheColorHint="@null"
+            android:orientation="vertical"
+            android:scrollbars="none" >
+        </ListView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/load_TxnLL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:padding="15dip" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="25dip" >
+
+            <Button
+                android:id="@+id/delete_Btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dip"
+                android:layout_toLeftOf="@+id/close_Btn"
+                android:background="@drawable/delete_selector" />
+
+            <Button
+                android:id="@+id/close_Btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dip"
+                android:layout_toLeftOf="@+id/load_Btn"
+                android:background="@drawable/close_selector" />
+
+            <Button
+                android:id="@+id/load_Btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/load_selector" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

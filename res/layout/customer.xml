@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:layout_marginTop="10dip"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/billHeadinglayout1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="5dip"
+                android:weightSum="1" >
+
+                <TextView
+                    android:id="@+id/billHeading1"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:gravity="right"
+                    android:paddingRight="10dip"
+                    android:text="Label1:"
+                    android:textColor="@color/Black"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/labelET1"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:hint="Label1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/billHeadinglayout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="5dip" >
+
+                <TextView
+                    android:id="@+id/billHeading2"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:gravity="right"
+                    android:paddingRight="10dip"
+                    android:text="Label2:"
+                    android:textColor="@color/Black"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/labelET2"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:hint="Label2" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/billHeadinglayout3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="5dip" >
+
+                <TextView
+                    android:id="@+id/billHeading3"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:gravity="right"
+                    android:paddingRight="10dip"
+                    android:text="Label3:"
+                    android:textColor="@color/Black"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/labelET3"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:hint="Label3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/billHeadinglayout4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="5dip" >
+
+                <TextView
+                    android:id="@+id/billHeading4"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:gravity="right"
+                    android:paddingRight="10dip"
+                    android:text="Label4:"
+                    android:textColor="@color/Black"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/labelET4"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:hint="Label4" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/billHeadinglayout5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="5dip" >
+
+                <TextView
+                    android:id="@+id/billHeading5"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:gravity="right"
+                    android:paddingRight="10dip"
+                    android:text="Label5:"
+                    android:textColor="@color/Black"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/labelET5"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:hint="Label5" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/billHeadinglayout6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="5dip" >
+
+                <TextView
+                    android:id="@+id/billHeading6"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:gravity="right"
+                    android:paddingRight="10dip"
+                    android:text="Label6:"
+                    android:textColor="@color/Black"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/labelET6"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:hint="Label6" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/billHeadinglayout7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="5dip" >
+
+                <TextView
+                    android:id="@+id/billHeading7"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:gravity="right"
+                    android:paddingRight="10dip"
+                    android:text="Label7:"
+                    android:textColor="@color/Black"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/labelET7"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:hint="Label7" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/billHeadinglayout8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="5dip" >
+
+                <TextView
+                    android:id="@+id/billHeading8"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:gravity="right"
+                    android:paddingRight="10dip"
+                    android:text="Label8:"
+                    android:textColor="@color/Black"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/labelET8"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:hint="Label8" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/bottomll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dip"
+                android:layout_marginRight="15dip"
+                android:layout_marginTop="10dip" >
+
+                <Button
+                    android:id="@+id/cancelBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dip"
+                    android:layout_toLeftOf="@+id/doneBtn"
+                    android:background="@drawable/cancel237x57_selector" />
+
+                <Button
+                    android:id="@+id/doneBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/done237x57_selector" />
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/dummy_id"
+        android:layout_width="0px"
+        android:layout_height="0px"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical" />
+
+</RelativeLayout>

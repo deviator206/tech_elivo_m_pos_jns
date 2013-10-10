@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/paymentLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/descent_Gray"
+    android:minHeight="1000dp"
+    android:minWidth="1000dp"
+    android:orientation="vertical"
+    android:padding="10dip" >
+
+    <RelativeLayout
+        android:id="@+id/titleLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@color/info_bar_blue"
+        android:padding="10dip" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/payment_refund"
+            android:textColor="@color/white"
+            android:textSize="26sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/titleLayout"
+        android:orientation="horizontal" >
+
+        <RelativeLayout
+            android:id="@+id/paymentTypeLayout"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_marginRight="10dip"
+            android:layout_weight="0.6"
+            android:background="@drawable/bill_panel_rectangle_shape" >
+
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal" >
+
+                <RadioButton
+                    android:id="@+id/radioPaymnts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dip"
+                    android:checked="true"
+                    android:text="@string/radio_paymnts"
+                    android:textColor="@color/Black"
+                    android:textStyle="bold" />
+
+                <RadioButton
+                    android:id="@+id/radioIssueChange"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:text="@string/radio_issuChng"
+                    android:textColor="@color/Black"
+                    android:textStyle="bold" />
+            </RadioGroup>
+
+            <!-- Payments UI -->
+
+            <ScrollView
+                android:id="@+id/paymntsScrollView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/radioGroup"
+                android:layout_centerHorizontal="true"
+                android:fillViewport="true"
+                android:visibility="visible" >
+
+                <LinearLayout
+                    android:id="@+id/middlelayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight="0.7"
+                        android:orientation="vertical" android:gravity="center_horizontal" >
+
+                        <Button
+                            android:id="@+id/cashBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dip"
+                            android:background="@drawable/payment_cash_selector"
+                            android:textSize="16sp" />
+
+                        <Button
+                            android:id="@+id/credit_cardBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dip"
+                            android:background="@drawable/payment_creditcard_selector"
+                            android:textSize="16sp" />
+
+                        <Button
+                            android:id="@+id/chequeBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dip"
+                            android:background="@drawable/payment_cheque_selector"
+                            android:textSize="16sp" />
+
+                        <Button
+                            android:id="@+id/voucherBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dip"
+                            android:background="@drawable/payment_voucher_selector"
+                            android:textSize="16sp" />
+
+                        <Button
+                            android:id="@+id/credit_noteBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/payment_creditnote_selector"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/paymentLL"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginRight="5dip"
+                        android:layout_weight="0.3"
+                        android:background="@drawable/bill_panel_rectangle_shape"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical" >
+
+                        <LinearLayout
+                            android:id="@+id/cashLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="visible" >
+
+                            <include layout="@layout/cash_payment" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ccLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone" >
+
+                            <include layout="@layout/credit_card_payment" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/cnLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone" >
+
+                            <include layout="@layout/credit_note_payment" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/voucherLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone" >
+
+                            <include layout="@layout/voucher_payment" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/chequeLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone" >
+
+                            <include layout="@layout/cheque_payment" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </ScrollView>
+
+            <!-- Issue Change UI -->
+
+            <RelativeLayout
+                android:id="@+id/issueChngTypeLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/radioGroup"
+                android:layout_marginRight="10dip"
+                android:visibility="gone" >
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:fillViewport="true" >
+
+                    <LinearLayout
+                        android:id="@+id/issueChngLL"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="5dip"
+                        android:background="@drawable/bill_panel_rectangle_shape"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical" >
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:orientation="vertical"
+                            android:paddingLeft="15dip"
+                            android:paddingRight="15dip" >
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="25dip"
+                                android:text="@string/enter_amount"
+                                android:textColor="@color/Black"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                            <EditText
+                                android:id="@+id/issue_amount_ET"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="25dip"
+                                android:inputType="numberDecimal"
+                                android:textColor="@color/Black" />
+
+                            <requestFocus />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="25dip"
+                                android:text="@string/select_currency"
+                                android:textColor="@color/Black"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                            <Spinner
+                                android:id="@+id/chngCurrencySpinner"
+                                android:layout_width="match_parent"
+                                android:layout_height="60dip"
+                                android:layout_marginBottom="25dip"
+                                android:layout_marginTop="25dip"
+                                android:textColor="@color/Black" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </ScrollView>
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/addBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="15dip"
+                android:layout_marginRight="15dip"
+                android:background="@drawable/add_selector"
+                android:textSize="22sp" />
+            
+            
+            <Button
+                android:id="@+id/equalBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="15dip"
+                android:layout_marginRight="160dip"
+                android:background="@drawable/equal_selector"
+                android:textSize="22sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="0.4"
+            android:background="@drawable/bill_panel_rectangle_shape" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/bottmoBTNLL"
+                android:orientation="vertical" >
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fillViewport="true" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" >
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/Gray"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:layout_width="0dip"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.6"
+                                android:padding="10dip"
+                                android:text="@string/total_payments"
+                                android:textColor="@color/white"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="0dip"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="10dip"
+                                android:layout_weight="0.4"
+                                android:gravity="right"
+                                android:padding="10dip"
+                                android:text="@string/amount"
+                                android:textColor="@color/white"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/addPaymentDetailLL"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical" >
+                        </LinearLayout>
+                    </LinearLayout>
+                </ScrollView>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/bottmoBTNLL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="25dip"
+                android:layout_marginTop="10dip"
+                android:gravity="center_horizontal" >
+
+                <Button
+                    android:id="@+id/cancelBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dip"
+                    android:layout_marginTop="5dip"
+                    android:background="@drawable/cancel237x57_selector"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/doneBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dip"
+                    android:layout_marginLeft="15dip"
+                    android:layout_marginTop="5dip"
+                    android:layout_toRightOf="@+id/cancelBtn"
+                    android:background="@drawable/done237x57_selector"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>
