@@ -108,8 +108,9 @@ public abstract class NTHandler extends ActivityHandler{
 
 		isNetworkAvailable = Util
 				.isNetworkConnectionAvailable(MPOSApplication.getContext());
-
-		if (isNetworkAvailable) {
+		boolean hostAvailable=Util.isURLReachable("http://windows.technologicle.com");//Config.HTTP + Config.DNS_NAME);
+		Log.d(TAG, "##PULSAR## ISREACHABLE RESPOSNE::"+hostAvailable);
+		if (isNetworkAvailable && hostAvailable) {
 			networkConnector = new NetworkConnector();
 			is = networkConnector.sendGetRequest(this, mUrl,
 					msbRequest.toString(), mOperationalResult, false);

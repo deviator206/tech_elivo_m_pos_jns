@@ -447,8 +447,9 @@ public class HomeActivity extends BaseActivity implements BaseResponseListener,
 		String mstUpdateTime = UserSingleton.getInstance(this)
 				.getMstUpdateTime();
 		String[] loginData = loginTime.split("\\s+");
+		String runDate = Config.RUN_DTE;
 		mUserInfoText.setText("User: " + user.getUSR_FULL_NAME()
-				+ " | Run Date: " + loginData[0] + " | Login Time: "
+				+ " | Run Date: " + runDate + " | Login Time: "
 				+ loginData[1] + " | Last Update: " + mstUpdateTime);
 
 		mCmpnyText.setText("| " + Config.COMPANY_NAME + " | "

@@ -12,6 +12,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -188,6 +190,30 @@ public class Util {
 		return connected;
 	}
 
+	/*
+	 * This function checks hosts availability.
+	 * @param host
+	 */
+	public static  boolean isURLReachable(String host) {
+		   
+		        try {
+		            URL url = new URL(host);   
+		            HttpURLConnection urlc = (HttpURLConnection) url.openConnection();
+		            urlc.setConnectTimeout(10 * 1000);          // 10 s.
+		            urlc.connect();
+		            if (urlc.getResponseCode() == 200) {        // 200 = "OK" code (http connection is fine).
+		                System.out.println("Success !");
+		                return true;
+		            } else {
+		            	System.out.println("STATUS::FALSE");
+		                return false;
+		            }
+		        } catch (Exception e1) {
+		            return false;
+		        } 
+		  
+	}
+	
 	public static void writeToSdCard(String path, String message) {
 		try {
 			File myFile = new File(path);

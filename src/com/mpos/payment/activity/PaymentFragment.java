@@ -98,6 +98,11 @@ public class PaymentFragment extends BaseActivity implements
 	private double mTotalPayment = 0.0;
 	private double mTotalRemaining = 0.0;
 	private double mNonRoundedTotalPayment = 0.0;
+	private double mTotalChange = 0.0;
+	private double mChangeDue = 0.0;
+	
+	private double mCreditNoteAmount = 0.0;
+	
 	private int numberOFRequests = 0;
 
 	private boolean isInputPaymentCorrect = true;
@@ -206,8 +211,12 @@ public class PaymentFragment extends BaseActivity implements
 				}
 				else
 				{
-					mIssueAmtEt.setText(String.valueOf(mTotalRemaining),
-							TextView.BufferType.EDITABLE);
+					if (mTotalPaymentMadeByCustomer > mTotalPayment)
+						mIssueAmtEt.setText(String.valueOf(mChangeDue),
+								TextView.BufferType.EDITABLE);
+					else
+						mIssueAmtEt.setText(String.valueOf("0.0"),
+								TextView.BufferType.EDITABLE);
 
 				}
 
@@ -261,7 +270,7 @@ public class PaymentFragment extends BaseActivity implements
 																	// change
 				Logger.d(TAG, "Issue Chng Add Btn clicked");
 				if (mIssueAmtEt.getText().toString().trim().length() > 0) {
-					Double totalChange = Double
+					mTotalChange = Double
 							.parseDouble(df
 									.format((mTotalPaymentMadeByCustomer - mTotalPayment)));
 
@@ -292,9 +301,9 @@ public class PaymentFragment extends BaseActivity implements
 						issueLocAMt = changeByUser / exRate;
 					}
 
-					if (totalChange <= 0) {
+					if (mTotalChange <= 0) {
 						showAlertMessage("", "No change is due", false);
-					} else if (issueLocAMt > (totalChange - mTotalChangeIssuedToCustomer)) {
+					} else if (issueLocAMt > (mTotalChange - mTotalChangeIssuedToCustomer)) {
 						showAlertMessage(
 								"",
 								"Extra change being issued. Please check again",
@@ -901,7 +910,8 @@ public class PaymentFragment extends BaseActivity implements
 		EditText amountET = (EditText) cnView.findViewById(R.id.amount_ET);
 		if (creditNoteNumberET.getText().toString().trim().length() > 0
 				&& amountET.getText().toString().trim().length() > 0) {
-
+			
+			mCreditNoteAmount = Double.parseDouble(amountET.getText().toString().trim());
 			PaymentHelper pHelper = new PaymentHelper(this);
 			pHelper.checkIfValidCreditNote(Config.GET_CREDIT_NOTE_DETAILS + ""
 					+ creditNoteNumberET.getText().toString() + ","
@@ -935,11 +945,11 @@ public class PaymentFragment extends BaseActivity implements
 						.getJSONObject("creditNoteDetails");
 
 				Logger.d(TAG,
-						"populatePaymentListOnCreditNoteResponse creditNoteDetails::amountEncashed:"
-								+ creditDetails.getString("amountEncashed"));
+						"populatePaymentListOnCreditNoteResponse creditNoteDetails::balance:"
+								+ creditDetails.getString("balance"));
 
-				showAlertDialog("Payment by Credit Note was successful Details:"
-						+ creditDetails.toString());
+				//showAlertDialog("Payment by Credit Note was successful Details: "
+				//		+ creditDetails.toString());
 
 				View cnView = findViewById(R.id.cnLayout);
 				EditText creditNoteNumberET = (EditText) cnView
@@ -951,27 +961,34 @@ public class PaymentFragment extends BaseActivity implements
 				 * (!amountET.getText().toString().equalsIgnoreCase("")) {
 				 * amount = Float.parseFloat(amountET.getText().toString()); }
 				 */
-				float amount = Float.parseFloat(creditDetails
-						.getString("amountEncashed"));
-
-				// if(amount){
-				PAYMT_MST_MODEL paymentMSTModel = createPaymentMSTModel();
-				paymentMSTModel.setPAY_AMNT(amount);
-				paymentMSTModel.setPAY_MODE_REF_NO(creditNoteNumberET.getText()
-						.toString());
-				paymentMSTModel.setPAY_MODE_REF_CODE(creditNoteNumberET
-						.getText().toString());
-				paymentMSTModel.setPAY_DTLS("Credit Note");
-				paymentMSTModel.setPAY_MODE("CN");
-				mTemp_PMT_List.add(paymentMSTModel);
-
-				showPaymentDetailsFromTable();
+				double balance = Double.parseDouble(creditDetails
+						.getString("balance"));
+				
+				//EditText amountET = (EditText) cnView.findViewById(R.id.amount_ET);
+				//float amount = Float.parseFloat(amountET.getText().toString().trim());
+				
+				if(mCreditNoteAmount <= balance) {
+					// if(amount){
+					PAYMT_MST_MODEL paymentMSTModel = createPaymentMSTModel();
+					paymentMSTModel.setPAY_AMNT(mCreditNoteAmount);
+					paymentMSTModel.setPAY_MODE_REF_NO(creditNoteNumberET.getText()
+							.toString());
+					paymentMSTModel.setPAY_MODE_REF_CODE(creditNoteNumberET
+							.getText().toString());
+					paymentMSTModel.setPAY_DTLS("Credit Note");
+					paymentMSTModel.setPAY_MODE("CN");
+					mTemp_PMT_List.add(paymentMSTModel);
+	
+					showPaymentDetailsFromTable();
+				} else {
+					showAlertDialog("Insufficient Balance");
+				}
 				// }else{
 
 				// }
 
 			} else {
-				showAlertDialog("Payment by Credit Note was unsuccessful:"
+				showAlertDialog("Payment by Credit Note was unsuccessful: "
 						+ respone.getString("serverResponse"));
 			}
 
@@ -1039,7 +1056,7 @@ public class PaymentFragment extends BaseActivity implements
 				return;
 			}
 
-			if (dateCompare(chequeDateET.getText().toString().trim())) {
+			if (!dateCompare(chequeDateET.getText().toString().trim())) {
 				showAlertDialog(getResources().getString(
 						R.string.alert_invalid_date));
 				isInputPaymentCorrect = false;
@@ -1066,6 +1083,7 @@ public class PaymentFragment extends BaseActivity implements
 		} else {
 			showAlertDialog(getResources().getString(
 					R.string.alert_wrong_inputs));
+			isInputPaymentCorrect = false;
 		}
 	}
 
@@ -1127,11 +1145,15 @@ public class PaymentFragment extends BaseActivity implements
 				.findViewById(R.id.authorization_code_ET);
 		EditText amountET = (EditText) creditView.findViewById(R.id.amount_ET);
 
+		if (!dateCompare(expiryDateET.getText().toString().trim())) {
+			showAlertDialog(getResources().getString(
+					R.string.alert_invalid_expiry_date));
+			isInputPaymentCorrect = false;
+		} else
 		if (cardNumberET.getText().toString().trim().length() > 0
 				&& expiryDateET.getText().toString().trim().length() > 0
 				&& authorizationET.getText().toString().trim().length() > 0
-				&& amountET.getText().toString().trim().length() > 0
-				&& dateCompare(expiryDateET.getText().toString().trim())) {
+				&& amountET.getText().toString().trim().length() > 0) {
 
 			if (!amountET.getText().toString().trim().equalsIgnoreCase("")) {
 				amount = Float.parseFloat(amountET.getText().toString());
@@ -1140,6 +1162,13 @@ public class PaymentFragment extends BaseActivity implements
 			if (amount > (mTotalPayment - mTotalPaymentMadeByCustomer)) {
 				showAlertDialog(getResources().getString(
 						R.string.alert_extra_amt));
+				isInputPaymentCorrect = false;
+				return;
+			}
+			
+			if (amount < (mTotalPayment - mTotalPaymentMadeByCustomer)) {
+				showAlertDialog(getResources().getString(
+						R.string.alert_less_amt));
 				isInputPaymentCorrect = false;
 				return;
 			}
@@ -1166,6 +1195,7 @@ public class PaymentFragment extends BaseActivity implements
 		} else {
 			showAlertDialog(getResources().getString(
 					R.string.alert_wrong_inputs));
+			isInputPaymentCorrect = false;
 		}
 	}
 
@@ -1471,11 +1501,11 @@ public class PaymentFragment extends BaseActivity implements
 
 		double issueAMtStillDue = ((mTotalPaymentMadeByCustomer - mTotalPayment) - mTotalChangeIssuedToCustomer);
 		String changeDueStr = df.format(issueAMtStillDue);
-		double changeDue = Double.parseDouble(changeDueStr);
+		mChangeDue = Double.parseDouble(changeDueStr);
 
 		if (mTotalPaymentMadeByCustomer > mTotalPayment) {
 			((TextView) changeStillDueRow.findViewById(R.id.paymentamount))
-					.setText("" + changeDue);
+					.setText("" + mChangeDue);
 		} else {
 			((TextView) changeStillDueRow.findViewById(R.id.paymentamount))
 					.setText("0");

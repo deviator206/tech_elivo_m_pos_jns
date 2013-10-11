@@ -8,12 +8,80 @@
         android:id="@+id/billListView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/top_hzt_line"
+        android:layout_above="@+id/totalText"
         android:layout_alignParentTop="true"
         android:background="@drawable/bill_panel_rectangle_shape"
         android:scrollbars="none"
         android:visibility="visible" >
     </ListView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/top_hzt_line"
+        android:layout_below="@+id/billListView"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="2dip"
+        android:weightSum="1" >
+
+        <TextView
+            android:id="@+id/totalText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4"
+            android:gravity="right"
+            android:paddingRight="21dip"
+            android:text="Total"
+            android:textColor="@color/Black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="1" >
+
+            <TextView
+                android:id="@+id/totalqtyText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6"
+                android:gravity="right"
+                android:text="Qty"
+                android:textColor="@color/Black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/totalpriceText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+                android:gravity="center"
+                android:paddingLeft="15dip"
+                android:text="Price"
+                android:textColor="@color/Black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/totalText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/top_hzt_line"
+        android:layout_marginBottom="2dip"
+        android:layout_marginLeft="125dip"
+        android:layout_marginRight="5dip"
+        android:text=""
+        android:textColor="@color/Black"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
     <View
         android:id="@+id/top_hzt_line"
@@ -23,7 +91,7 @@
         android:layout_marginBottom="2dip"
         android:layout_marginLeft="5dip"
         android:layout_marginRight="5dip"
-        android:layout_marginTop="2dip"
+        android:layout_marginTop="5dip"
         android:background="@color/Black" />
 
     <LinearLayout
@@ -66,14 +134,6 @@
                 android:background="@drawable/payment_selector"
                 android:textColor="@color/Black"
                 android:textSize="18sp" />
-
-            <Button
-                android:id="@+id/customerBtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/customer_selector"
-                android:textColor="@color/Black"
-                android:textSize="18sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -94,10 +154,10 @@
                 android:textSize="18sp" />
 
             <Button
-                android:id="@+id/printBtn"
+                android:id="@+id/customerBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/print_selector"
+                android:background="@drawable/customer_selector"
                 android:textColor="@color/Black"
                 android:textSize="18sp" />
 

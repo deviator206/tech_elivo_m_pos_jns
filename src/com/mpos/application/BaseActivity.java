@@ -158,7 +158,7 @@ public class BaseActivity extends FragmentActivity {
 		Config.RUN_DTE = prefs.getString(LogInActivity.RUN_DTE, "");
 		Config.COMPANY_ADDRESS = prefs.getString(LogInActivity.CMPNY_ADDRESS,
 				"");
-		Config.RUN_DTE = prefs.getString(LogInActivity.CMPNY_TELE, "");
+		Config.COMPANY_TELE = prefs.getString(LogInActivity.CMPNY_TELE, "");
 		
 		Config.SOAP_ACTION = prefs.getString(LogInActivity.PRINTER_SOAP_REQUEST_URL, "");
 		Config.PRINTER_METHOD = prefs.getString(LogInActivity.PRINTER_METHOD_NAME, "");

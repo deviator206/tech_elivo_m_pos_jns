@@ -135,7 +135,7 @@ public class BillFragment extends Fragment implements BaseResponseListener {
 				.inflate(R.layout.billfragment, container, false);
 		optionPanelView = getActivity().findViewById(R.id.option_panel);
 		componentInitialisation();
-		updateLogOutButtonState(true);
+		updateOptionPanelButtonStates(true);
 		HomeHelper helper = new HomeHelper(this);
 
 		Logger.d(TAG, "Trans No:"
@@ -174,12 +174,12 @@ public class BillFragment extends Fragment implements BaseResponseListener {
 		mNewSaleBtn.setOnClickListener(mOnClickListener);
 		mNewSaleBtn.setClickable(true);
 
-		mPrintBtn = (Button) categoryView.findViewById(R.id.printBtn);
+		/*mPrintBtn = (Button) categoryView.findViewById(R.id.printBtn);
 		mPrintBtn.setOnClickListener(mOnClickListener);
 		mPrintBtn.setClickable(false);
-
+*/
 		if (UserSingleton.getInstance(getContext()).isPaymentDone) {
-			mPrintBtn.setClickable(true);
+			//mPrintBtn.setClickable(true);
 			mNewSaleBtn.setClickable(true);
 		}
 
@@ -485,6 +485,7 @@ public class BillFragment extends Fragment implements BaseResponseListener {
 			}
 		}
 
+		System.out.println(" SIZE OF DELETED SIZE :::"+deletedItemArray.size());	
 		if (deletedItemArray.size() > 0) {
 			for (BillTransactionModel removeModel : deletedItemArray) {
 				removeModel.setPRDCT_VOID(Constants.ITEM_VOIDED); // Item Voided
@@ -514,15 +515,21 @@ public class BillFragment extends Fragment implements BaseResponseListener {
 			// logoutBtn.setEnabled(true);
 			// sets background
 			// logoutBtn.setBackgroundResource(R.drawable.logout_selector);
-
+			
+			//enable the Option Panel buttons
+			updateOptionPanelButtonStates(true);
+			
 			billListView.setAdapter(new BillAdapter(null, null, null,
 					getActivity().getBaseContext()));
-			((TextView) listFooterView.findViewById(R.id.totalqtyText))
+			/*((TextView) listFooterView.findViewById(R.id.totalqtyText))
 					.setText("0");
 			((TextView) listFooterView.findViewById(R.id.totalpriceText))
-					.setText("0.0");
+					.setText("0.0");*/
 			((TextView) listFooterView.findViewById(R.id.taxpriceText))
 					.setText("0.0");
+			
+			((TextView) categoryView.findViewById(R.id.totalpriceText)).setText("0.0");
+			((TextView) categoryView.findViewById(R.id.totalqtyText)).setText("0");
 		}
 	}
 
@@ -597,8 +604,10 @@ public class BillFragment extends Fragment implements BaseResponseListener {
 		} else if (BillFragment.typeOfAction.equalsIgnoreCase("void item")) {
 			Logger.d(TAG, "userRights.VOID_LIMIT_MAX  "
 					+ userRights.VOID_LIMIT_MAX);
+			System.out.println(" VOID### CHECK1 ");
 			if (userRights.VOID_LIMIT_MAX == -1
 					|| userRights.VOID_LIMIT_MAX > 0) {
+				System.out.println(" VOID### CHECK2 ");
 				processVoidItem();
 			} else {
 				showAlertDialog("This user has not access to void items");
@@ -629,10 +638,13 @@ public class BillFragment extends Fragment implements BaseResponseListener {
 		alertDialogFragment.show(fm, ALERT_FRAGMENT);
 	}
 
-	public void updateLogOutButtonState(Boolean bStatus) {
+	public void updateOptionPanelButtonStates(Boolean bStatus) {
 		logoutBtn.setEnabled(bStatus);
 		mHeldTransactionBtn.setEnabled(bStatus);
 		if (bStatus) {
+
+			logoutBtn.setBackgroundResource(R.drawable.logout_selector);
+			mHeldTransactionBtn.setBackgroundResource(R.drawable.held_selector);
 
 			// session timeout can occur
 			SharedPreferences prefs = getActivity().getSharedPreferences(
@@ -640,7 +652,8 @@ public class BillFragment extends Fragment implements BaseResponseListener {
 			MPOSApplication.waiter.setPeriod(prefs.getInt(
 					MPOSApplication.SESSTION_TIME_OUT, 2));
 		} else {
-			// logoutBtn.setBackgroundResource(R.drawable.btn_logout_db);
+			mHeldTransactionBtn.setBackgroundResource(R.drawable.btn_held_db);
+			logoutBtn.setBackgroundResource(R.drawable.btn_logout_db);
 
 			// no session timeout shd occur
 			MPOSApplication.waiter.setPeriod(10000000);
@@ -653,7 +666,7 @@ public class BillFragment extends Fragment implements BaseResponseListener {
 	private void updateBillFragment() {
 		Logger.v(TAG, "bill instruection" + mBillInstructionTranModels);
 		if (mBillTranModels != null && mBillTranModels.size() > 0) {
-			updateLogOutButtonState(false);
+			updateOptionPanelButtonStates(false);
 
 			if (mBillInstructionTranModels != null
 					&& mBillInstructionTranModels.size() > 0) {
@@ -667,11 +680,11 @@ public class BillFragment extends Fragment implements BaseResponseListener {
 			}
 
 			if (UserSingleton.getInstance(getContext()).isPaymentDone) {
-				mPrintBtn.setClickable(true);
+				//mPrintBtn.setClickable(true);
 				mNewSaleBtn.setClickable(true);
 			}
 			else
-				mPrintBtn.setClickable(false);
+				//mPrintBtn.setClickable(false);
 
 			billAdapter = new BillAdapter(mBillTranModels,
 					mBillInstructionTranModels, mINSTRCTNDataList,
@@ -702,10 +715,12 @@ public class BillFragment extends Fragment implements BaseResponseListener {
 			// DecimalFormat df2 = new DecimalFormat("###.##");
 			DecimalFormat df2 = Constants.getDecimalFormat();
 			billTotalPrice = Double.valueOf(df2.format(billTotalPrice));
-			((TextView) listFooterView.findViewById(R.id.totalqtyText))
+		/*	((TextView) listFooterView.findViewById(R.id.totalqtyText))
 					.setText("" + finalTotalQty);
 			((TextView) listFooterView.findViewById(R.id.totalpriceText))
-					.setText("" + billTotalPrice);
+					.setText("" + billTotalPrice);*/
+			((TextView) categoryView.findViewById(R.id.totalpriceText)).setText("" + billTotalPrice);
+			((TextView) categoryView.findViewById(R.id.totalqtyText)).setText("" + finalTotalQty);
 			((TextView) listFooterView.findViewById(R.id.taxpriceText))
 					.setText("" + df2.format(totalTaxAmt));
 		}
@@ -835,7 +850,7 @@ public class BillFragment extends Fragment implements BaseResponseListener {
 	 * Method- To start new panel
 	 */
 	private void refreshBillPanel() {
-		updateLogOutButtonState(true);
+		updateOptionPanelButtonStates(true);
 
 		// Create new Transaction No.
 		UserSingleton.getInstance(getContext()).generateUniqueTransactionNo();
@@ -852,10 +867,14 @@ public class BillFragment extends Fragment implements BaseResponseListener {
 		DecimalFormat df2 = Constants.getDecimalFormat();
 		billTotalPrice = Double.valueOf(df2.format(billTotalPrice));
 
-		((TextView) listFooterView.findViewById(R.id.totalqtyText)).setText(""
+		/*((TextView) listFooterView.findViewById(R.id.totalqtyText)).setText(""
 				+ totalQty);
 		((TextView) listFooterView.findViewById(R.id.totalpriceText))
-				.setText("" + billTotalPrice);
+				.setText("" + billTotalPrice);*/
+		
+		((TextView) categoryView.findViewById(R.id.totalpriceText)).setText("" + billTotalPrice);
+		((TextView) categoryView.findViewById(R.id.totalqtyText)).setText("" + totalQty);
+		
 		((TextView) listFooterView.findViewById(R.id.taxpriceText)).setText(""
 				+ totalTaxAmt);
 
@@ -1122,7 +1141,7 @@ public class BillFragment extends Fragment implements BaseResponseListener {
 										startNewSale();
 									}
 									
-									mPrintBtn.setClickable(false);
+									//mPrintBtn.setClickable(false);
 								}
 							})
 					.setNegativeButton(

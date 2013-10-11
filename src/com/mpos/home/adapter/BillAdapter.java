@@ -11,6 +11,7 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.mpos.R;
+import com.mpos.application.MPOSApplication;
 import com.mpos.framework.common.Constants;
 import com.mpos.framework.common.Logger;
 import com.mpos.home.model.BillTransactionModel;
@@ -76,21 +77,29 @@ public class BillAdapter extends BaseAdapter {
 			holder.priceText = (TextView) convertView
 					.findViewById(R.id.item_priceText);
 			convertView.setTag(holder);
-
+			
 			holder.itemCheck.setOnClickListener(new View.OnClickListener() {
 				public void onClick(View v) {
+					System.out.println("@@CLICKED DETECTED " +v.getParent().toString());
 					CheckBox cb = (CheckBox) v;
 					BillTransactionModel model = (BillTransactionModel) cb
 							.getTag();
 					model.setVoidChecked(cb.isChecked());
+					System.out.println("model"+model.getRow_id());
+					for(int i=0;i<mTransactionArray.size();i++)
+					{
+						System.out.println(i+" - setting CHECKED FOR "+mTransactionArray.get(i).isVoidChecked());
+					}
 				}
 			});
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
 
-		holder.itemCheck.setSelected(mTransactionArray.get(position)
-				.isVoidChecked());
+		System.out.println(position+"@@##> :"+mTransactionArray.get(position).isVoidChecked());
+		holder.itemCheck.setChecked(false); //setSelected(false);
+		holder.itemCheck.setChecked(mTransactionArray.get(position).isVoidChecked());
+		
 		holder.itemCheck.setTag(mTransactionArray.get(position));
 		holder.codeText
 				.setText(mTransactionArray.get(position).getPRDCT_CODE());
@@ -154,6 +163,7 @@ public class BillAdapter extends BaseAdapter {
 	}
 
 	private class ViewHolder {
+		
 		private CheckBox itemCheck;
 		private TextView quantityText;
 		private TextView descriptionText;

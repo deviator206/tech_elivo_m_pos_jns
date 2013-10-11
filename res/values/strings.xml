@@ -5,6 +5,7 @@
     <string name="yes_text">YES</string>
     <string name="no_text">NO</string>
     <string name="alert_invalid_date">Invalid Date</string>
+    <string name="alert_invalid_expiry_date">Expiry Date cannot be today or earlier</string>
     <string name="alert_print_sucess">Successfully printed</string>
     <string name="alert_print_failure">Unable to print [Returned false from server]</string>
     <string name="alert_print_communication_error">Invalid Parameters being sent to server</string>
@@ -31,7 +32,7 @@
     <string name="new_sale">New Sale</string>
     <string name="change">Change</string>
     <string name="change_issued">Changes Issued -</string>
-    <string name="change_still_due">Changes Still due - </string>
+    <string name="change_still_due">Change Still Due - </string>
     <string name="customer">Customer</string>
     <string name="held_time">Time</string>
     <string name="held_date">Date</string>
@@ -126,6 +127,7 @@
     <string name="alert_implementation_progress">This feature implementation in progress.</string>
     <string name="alert_wrong_amt">Wrong Amount! Please enter valid amount.</string>
     <string name="alert_extra_amt">Wrong Amount! Amount should not be more than Total Payment Remaining.</string>
+    <string name="alert_less_amt">Wrong Amount! Amount should not be less than Total Payment Remaining.</string>
     <string name="alert_issue_entry_present">Issue change entries are made. Are you sure?.</string>
     <string name="alert_issue_discard">Discard Issue Change.</string>
     <string name="alert_wrong_inputs">Wrong Information! Please enter valid Info.</string>
