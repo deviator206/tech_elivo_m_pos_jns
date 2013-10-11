@@ -120,8 +120,8 @@ public class BillFragment extends Fragment implements BaseResponseListener {
 	public static String typeOfAction;
 	private boolean isHoldTxn = false;
 	private String preserverUniqTxnNo = "";
-	private String sPRINTER_JSON_DATA ="";
-	private BillFragment objBillFrag ;
+	private String sPRINTER_JSON_DATA = "";
+	private BillFragment objBillFrag;
 
 	public BillFragment() {
 		objBillFrag = this;
@@ -168,18 +168,20 @@ public class BillFragment extends Fragment implements BaseResponseListener {
 				mOnClickListener);
 
 		logoutBtn = (Button) optionPanelView.findViewById(R.id.logout_button);
-		mHeldTransactionBtn = (Button) optionPanelView.findViewById(R.id.hold_txn_button);
+		mHeldTransactionBtn = (Button) optionPanelView
+				.findViewById(R.id.hold_txn_button);
 
 		mNewSaleBtn = (Button) categoryView.findViewById(R.id.cancelsaleBtn);
 		mNewSaleBtn.setOnClickListener(mOnClickListener);
 		mNewSaleBtn.setClickable(true);
 
-		/*mPrintBtn = (Button) categoryView.findViewById(R.id.printBtn);
-		mPrintBtn.setOnClickListener(mOnClickListener);
-		mPrintBtn.setClickable(false);
-*/
+		/*
+		 * mPrintBtn = (Button) categoryView.findViewById(R.id.printBtn);
+		 * mPrintBtn.setOnClickListener(mOnClickListener);
+		 * mPrintBtn.setClickable(false);
+		 */
 		if (UserSingleton.getInstance(getContext()).isPaymentDone) {
-			//mPrintBtn.setClickable(true);
+			// mPrintBtn.setClickable(true);
 			mNewSaleBtn.setClickable(true);
 		}
 
@@ -216,28 +218,38 @@ public class BillFragment extends Fragment implements BaseResponseListener {
 		}
 
 		// Once payment is done, disable all not required buttons
+
 		if (UserSingleton.getInstance(getContext()).isPaymentDone) {
-			categoryView.findViewById(R.id.paymentBtn).setClickable(false);
-			categoryView.findViewById(R.id.paymentBtn).setBackgroundResource(
-					R.drawable.btn_payment_db);
+			/*
+			 * categoryView.findViewById(R.id.paymentBtn).setClickable(false);
+			 * categoryView.findViewById(R.id.paymentBtn).setBackgroundResource(
+			 * R.drawable.btn_payment_db);
+			 * 
+			 * categoryView.findViewById(R.id.holdBtn).setClickable(false);
+			 * categoryView.findViewById(R.id.holdBtn).setBackgroundResource(
+			 * R.drawable.btn_hold_db);
+			 * 
+			 * categoryView.findViewById(R.id.customerBtn).setClickable(false);
+			 * categoryView
+			 * .findViewById(R.id.customerBtn).setBackgroundResource(
+			 * R.drawable.btn_customer_db);
+			 * 
+			 * categoryView.findViewById(R.id.salespersonBtn).setClickable(false)
+			 * ; categoryView.findViewById(R.id.salespersonBtn)
+			 * .setBackgroundResource(R.drawable.btn_sales_db);
+			 * 
+			 * categoryView.findViewById(R.id.voidItemBtn).setClickable(false);
+			 * categoryView
+			 * .findViewById(R.id.voidItemBtn).setBackgroundResource(
+			 * R.drawable.btn_void_db);
+			 * 
+			 * billListView.setClickable(false);
+			 */
 
-			categoryView.findViewById(R.id.holdBtn).setClickable(false);
-			categoryView.findViewById(R.id.holdBtn).setBackgroundResource(
-					R.drawable.btn_hold_db);
+			// startNewSale();
+			((BaseActivity) getActivity()).startProgress();
+			new UploadPrintData().execute("test");
 
-			categoryView.findViewById(R.id.customerBtn).setClickable(false);
-			categoryView.findViewById(R.id.customerBtn).setBackgroundResource(
-					R.drawable.btn_customer_db);
-
-			categoryView.findViewById(R.id.salespersonBtn).setClickable(false);
-			categoryView.findViewById(R.id.salespersonBtn)
-					.setBackgroundResource(R.drawable.btn_sales_db);
-
-			categoryView.findViewById(R.id.voidItemBtn).setClickable(false);
-			categoryView.findViewById(R.id.voidItemBtn).setBackgroundResource(
-					R.drawable.btn_void_db);
-
-			billListView.setClickable(false);
 		}
 
 	}
@@ -359,19 +371,16 @@ public class BillFragment extends Fragment implements BaseResponseListener {
 			case R.id.cancelsaleBtn:
 				// Show New sale confirmation dialog only when there are items
 				// in Bill Panel
-				if (UserSingleton.getInstance(getContext()).isPaymentDone)
-				{
+				if (UserSingleton.getInstance(getContext()).isPaymentDone) {
 					startNewSale();
-				
-				}
-				else
-				{
+
+				} else {
 					if (mBillTranModels != null && mBillTranModels.size() > 0)
 						showAlertDialog(
 								getResources().getString(
 										R.string.alert_void_bill_panel), false);
 				}
-				//mPrintBtn.setClickable(false);
+				// mPrintBtn.setClickable(false);
 				break;
 
 			case R.id.printBtn:
@@ -394,21 +403,22 @@ public class BillFragment extends Fragment implements BaseResponseListener {
 						// call();
 						((BaseActivity) getActivity()).startProgress();
 						new UploadPrintData().execute("test");
-						
-						// printItems();
-						// OfflineTxnUploadHelper txnUploadHelper = new OfflineTxnUploadHelper(true, objBillFrag);
-                        // txnUploadHelper.uploadJsonData(UserSingleton.getInstance(getContext()).mUniqueTrasactionNo);
 
-//							showAlertDialog(
-//									getResources().getString(
-//											R.string.alert_void_bill_panel), false);
-					} 
-					
+						// printItems();
+						// OfflineTxnUploadHelper txnUploadHelper = new
+						// OfflineTxnUploadHelper(true, objBillFrag);
+						// txnUploadHelper.uploadJsonData(UserSingleton.getInstance(getContext()).mUniqueTrasactionNo);
+
+						// showAlertDialog(
+						// getResources().getString(
+						// R.string.alert_void_bill_panel), false);
+					}
+
 					mPrintBtn.setClickable(false);
-					
-//					else {
-//						showBillPrintDialog("You don't have any transaction to print.");
-//					}
+
+					// else {
+					// showBillPrintDialog("You don't have any transaction to print.");
+					// }
 				}
 				break;
 
@@ -485,7 +495,8 @@ public class BillFragment extends Fragment implements BaseResponseListener {
 			}
 		}
 
-		System.out.println(" SIZE OF DELETED SIZE :::"+deletedItemArray.size());	
+		System.out.println(" SIZE OF DELETED SIZE :::"
+				+ deletedItemArray.size());
 		if (deletedItemArray.size() > 0) {
 			for (BillTransactionModel removeModel : deletedItemArray) {
 				removeModel.setPRDCT_VOID(Constants.ITEM_VOIDED); // Item Voided
@@ -515,21 +526,25 @@ public class BillFragment extends Fragment implements BaseResponseListener {
 			// logoutBtn.setEnabled(true);
 			// sets background
 			// logoutBtn.setBackgroundResource(R.drawable.logout_selector);
-			
-			//enable the Option Panel buttons
+
+			// enable the Option Panel buttons
 			updateOptionPanelButtonStates(true);
-			
+
 			billListView.setAdapter(new BillAdapter(null, null, null,
 					getActivity().getBaseContext()));
-			/*((TextView) listFooterView.findViewById(R.id.totalqtyText))
-					.setText("0");
-			((TextView) listFooterView.findViewById(R.id.totalpriceText))
-					.setText("0.0");*/
+			/*
+			 * ((TextView) listFooterView.findViewById(R.id.totalqtyText))
+			 * .setText("0"); ((TextView)
+			 * listFooterView.findViewById(R.id.totalpriceText))
+			 * .setText("0.0");
+			 */
 			((TextView) listFooterView.findViewById(R.id.taxpriceText))
 					.setText("0.0");
-			
-			((TextView) categoryView.findViewById(R.id.totalpriceText)).setText("0.0");
-			((TextView) categoryView.findViewById(R.id.totalqtyText)).setText("0");
+
+			((TextView) categoryView.findViewById(R.id.totalpriceText))
+					.setText("0.0");
+			((TextView) categoryView.findViewById(R.id.totalqtyText))
+					.setText("0");
 		}
 	}
 
@@ -667,7 +682,7 @@ public class BillFragment extends Fragment implements BaseResponseListener {
 		Logger.v(TAG, "bill instruection" + mBillInstructionTranModels);
 		if (mBillTranModels != null && mBillTranModels.size() > 0) {
 			updateOptionPanelButtonStates(false);
-
+				
 			if (mBillInstructionTranModels != null
 					&& mBillInstructionTranModels.size() > 0) {
 				Logger.v(TAG,
@@ -680,15 +695,16 @@ public class BillFragment extends Fragment implements BaseResponseListener {
 			}
 
 			if (UserSingleton.getInstance(getContext()).isPaymentDone) {
-				//mPrintBtn.setClickable(true);
+				// mPrintBtn.setClickable(true);
 				mNewSaleBtn.setClickable(true);
-			}
-			else
-				//mPrintBtn.setClickable(false);
+			} else
+				// mPrintBtn.setClickable(false);
 
-			billAdapter = new BillAdapter(mBillTranModels,
-					mBillInstructionTranModels, mINSTRCTNDataList,
-					getActivity());
+
+			
+				billAdapter = new BillAdapter(mBillTranModels,
+						mBillInstructionTranModels, mINSTRCTNDataList,
+						getActivity());
 			billListView.setAdapter(billAdapter);
 			billAdapter.notifyDataSetChanged();
 
@@ -715,12 +731,16 @@ public class BillFragment extends Fragment implements BaseResponseListener {
 			// DecimalFormat df2 = new DecimalFormat("###.##");
 			DecimalFormat df2 = Constants.getDecimalFormat();
 			billTotalPrice = Double.valueOf(df2.format(billTotalPrice));
-		/*	((TextView) listFooterView.findViewById(R.id.totalqtyText))
+			/*
+			 * ((TextView) listFooterView.findViewById(R.id.totalqtyText))
+			 * .setText("" + finalTotalQty); ((TextView)
+			 * listFooterView.findViewById(R.id.totalpriceText)) .setText("" +
+			 * billTotalPrice);
+			 */
+			((TextView) categoryView.findViewById(R.id.totalpriceText))
+					.setText("" + billTotalPrice);
+			((TextView) categoryView.findViewById(R.id.totalqtyText))
 					.setText("" + finalTotalQty);
-			((TextView) listFooterView.findViewById(R.id.totalpriceText))
-					.setText("" + billTotalPrice);*/
-			((TextView) categoryView.findViewById(R.id.totalpriceText)).setText("" + billTotalPrice);
-			((TextView) categoryView.findViewById(R.id.totalqtyText)).setText("" + finalTotalQty);
 			((TextView) listFooterView.findViewById(R.id.taxpriceText))
 					.setText("" + df2.format(totalTaxAmt));
 		}
@@ -867,14 +887,19 @@ public class BillFragment extends Fragment implements BaseResponseListener {
 		DecimalFormat df2 = Constants.getDecimalFormat();
 		billTotalPrice = Double.valueOf(df2.format(billTotalPrice));
 
-		/*((TextView) listFooterView.findViewById(R.id.totalqtyText)).setText(""
+		/*
+		 * ((TextView)
+		 * listFooterView.findViewById(R.id.totalqtyText)).setText("" +
+		 * totalQty); ((TextView)
+		 * listFooterView.findViewById(R.id.totalpriceText)) .setText("" +
+		 * billTotalPrice);
+		 */
+
+		((TextView) categoryView.findViewById(R.id.totalpriceText)).setText(""
+				+ billTotalPrice);
+		((TextView) categoryView.findViewById(R.id.totalqtyText)).setText(""
 				+ totalQty);
-		((TextView) listFooterView.findViewById(R.id.totalpriceText))
-				.setText("" + billTotalPrice);*/
-		
-		((TextView) categoryView.findViewById(R.id.totalpriceText)).setText("" + billTotalPrice);
-		((TextView) categoryView.findViewById(R.id.totalqtyText)).setText("" + totalQty);
-		
+
 		((TextView) listFooterView.findViewById(R.id.taxpriceText)).setText(""
 				+ totalTaxAmt);
 
@@ -1131,17 +1156,18 @@ public class BillFragment extends Fragment implements BaseResponseListener {
 												.getInstance(getContext()).mUniqueTrasactionNo);
 										preserverUniqTxnNo = UserSingleton
 												.getInstance(getContext()).mUniqueTrasactionNo;
-										UserOptionFragment hm=(UserOptionFragment.getInstance());
-										if(hm != null)
-										hm.setZedReportButton(false);
-										
+										UserOptionFragment hm = (UserOptionFragment
+												.getInstance());
+										if (hm != null)
+											hm.setZedReportButton(false);
+
 									} else {
 										// Discard previous sale and start new
 										// sale
 										startNewSale();
 									}
-									
-									//mPrintBtn.setClickable(false);
+
+									// mPrintBtn.setClickable(false);
 								}
 							})
 					.setNegativeButton(
@@ -1172,7 +1198,7 @@ public class BillFragment extends Fragment implements BaseResponseListener {
 									preserverUniqTxnNo = UserSingleton
 											.getInstance(getContext()).mUniqueTrasactionNo;
 
-									// startNewSale();
+									 startNewSale();
 
 								}
 							})
@@ -1263,10 +1289,9 @@ public class BillFragment extends Fragment implements BaseResponseListener {
 					+ " must implement FragmentCommunicationInterface");
 		}
 	}
-	
-	public void triggerPrinting (String sJSON)
-	{
-		sPRINTER_JSON_DATA =sJSON;
+
+	public void triggerPrinting(String sJSON) {
+		sPRINTER_JSON_DATA = sJSON;
 		new UploadPrintData().execute("test");
 	}
 
@@ -1276,16 +1301,19 @@ public class BillFragment extends Fragment implements BaseResponseListener {
 			try {
 
 				HttpClient client = new DefaultHttpClient();
-				HttpPost post = new HttpPost(Config.HTTP + Config.DNS_NAME + "print");
-				
-				String jsonData = "{\"billScanCode\": \"" + UserSingleton.getInstance(getContext()).mUniqueTrasactionNo + "\"}";
+				HttpPost post = new HttpPost(Config.HTTP + Config.DNS_NAME
+						+ "print");
+
+				String jsonData = "{\"billScanCode\": \""
+						+ UserSingleton.getInstance(getContext()).mUniqueTrasactionNo
+						+ "\"}";
 				StringEntity entity = new StringEntity(jsonData, HTTP.UTF_8);
 				entity.setContentType("application/json");
 				post.setEntity(entity);
 				HttpResponse response = client.execute(post);
-				
+
 				System.out.println("PRINTER JSON: " + jsonData);
-				
+
 				return "true";
 
 			} catch (Exception e) {
@@ -1299,15 +1327,14 @@ public class BillFragment extends Fragment implements BaseResponseListener {
 			if (feed != null) {
 				if (feed == "true") {
 					showAlertDialog(getString(R.string.alert_print_sucess));
-					if (mBillTranModels != null && mBillTranModels.size() > 0)
-						startNewSale();
-				}
-				else
+
+				} else
 					showAlertDialog(getString(R.string.alert_print_failure));
 			} else {
 				showAlertDialog(getString(R.string.alert_print_communication_error));
 			}
-
+			
+			startNewSale();
 		}
 	}
 
